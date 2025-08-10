@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,30 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController _confirmPWController = TextEditingController();
 
   // Registration function
-  void register() {}
+  void register(BuildContext context) async {
+    // call the class
+    final authService = AuthService();
+
+    // pw and cpw must match to create an account
+    if (_confirmPWController.text == _passwordController.text) {
+      try {
+        await authService.signUpWithEmailAndPassword(
+          _emailController.text,
+          _passwordController.text,
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toString())));
+      }
+    } else {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Passwords don\'t match!')));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +86,7 @@ class RegisterScreen extends StatelessWidget {
               controller: _confirmPWController,
             ),
             // Login Button
-            MyButton(text: 'Sign Up', onTap: register),
+            MyButton(text: 'Sign Up', onTap: () => register(context)),
             const SizedBox(height: 20),
             // Register Now
             Row(

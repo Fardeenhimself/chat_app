@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,23 @@ class LoginScreen extends StatelessWidget {
   final void Function()? onTap;
 
   // Login
-  void login() {}
+  void login(BuildContext context) async {
+    // Get the auth Service from AuthService class
+    final authService = AuthService();
+
+    // try and catch
+    try {
+      await authService.signInWithEmailAndPassword(
+        _emailController.text,
+        _passwordController.text,
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
 
   LoginScreen({super.key, required this.onTap});
 
@@ -53,7 +70,7 @@ class LoginScreen extends StatelessWidget {
               controller: _passwordController,
             ),
             // Login Button
-            MyButton(text: 'Login', onTap: login),
+            MyButton(text: 'Login', onTap: () => login(context)),
             const SizedBox(height: 20),
             // Register Now
             Row(
