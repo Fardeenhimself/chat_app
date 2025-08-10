@@ -56,7 +56,10 @@ class HomePage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (ctx) => ChatPage(recieverEmail: userData['email']),
+              builder: (ctx) => ChatPage(
+                recieverEmail: userData['email'],
+                recieverID: userData['uid'],
+              ),
             ),
           );
         },
