@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.light(
@@ -13,4 +14,6 @@ final ThemeData lightTheme = ThemeData(
     centerTitle: true,
     backgroundColor: Color.fromARGB(255, 153, 255, 201),
   ),
+
+  textTheme: GoogleFonts.interTextTheme(),
 );
