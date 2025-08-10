@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
             Text(
               'Register Now and start chatting!',
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.primary,
               ),
