@@ -9,4 +9,8 @@ final ThemeData lightTheme = ThemeData(
     inversePrimary: Color.fromARGB(255, 194, 255, 226),
   ),
   scaffoldBackgroundColor: Color.fromARGB(255, 219, 255, 239),
+  appBarTheme: AppBarTheme().copyWith(
+    centerTitle: true,
+    backgroundColor: Color.fromARGB(255, 153, 255, 201),
+  ),
 );

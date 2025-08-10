@@ -1,8 +1,16 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
+
+  // Sign Out method
+  void signOut() async {
+    // Call the class
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +60,7 @@ class MyDrawer extends StatelessWidget {
             contentPadding: EdgeInsets.only(left: 30, bottom: 30),
             leading: Icon(Icons.logout_rounded),
             title: Text('L O G  O U T'),
-            onTap: () {},
+            onTap: signOut,
           ),
         ],
       ),
