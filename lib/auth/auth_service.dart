@@ -13,7 +13,6 @@ class AuthService {
 
   // Get all user except blocked
 
-
   //sign in method
   Future<UserCredential> signInWithEmailAndPassword(
     String email,
@@ -65,5 +64,26 @@ class AuthService {
     return await _auth.signOut();
   }
 
+  // delete account
+  Future<void> deleteAccount() async {
+    try {
+      User? user = _auth.currentUser;
 
+      if (user != null) {
+        // Delete Firestore document
+        await _firestore.collection('Users').doc(user.uid).delete();
+
+        //  Delete Firebase Auth account
+        await user.delete();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        throw Exception('Please log in again before deleting your account.');
+      } else {
+        throw Exception(e.message);
+      }
+    } catch (e) {
+      throw Exception('Failed to delete account: $e');
+    }
+  }
 }

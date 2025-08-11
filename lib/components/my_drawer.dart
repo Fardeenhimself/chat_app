@@ -1,4 +1,5 @@
 import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/screens/blocked_users.dart';
 import 'package:chat_app/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,19 @@ class MyDrawer extends StatelessWidget {
                   Navigator.of(
                     context,
                   ).push(MaterialPageRoute(builder: (ctx) => SettingsPage()));
+                },
+              ),
+
+              // Blocked User
+              ListTile(
+                contentPadding: EdgeInsets.only(left: 30),
+                leading: Icon(Icons.person_off),
+                title: Text('B L O C K E D  U S E R S'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (ctx) => BlockedUsers()));
                 },
               ),
             ],

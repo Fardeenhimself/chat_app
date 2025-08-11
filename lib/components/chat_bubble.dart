@@ -104,7 +104,11 @@ class ChatBubble extends StatelessWidget {
           // report
           TextButton(
             onPressed: () {
+              // perform the function
               ChatService().blockUser(userID);
+              // pop the dialog
+              Navigator.of(context).pop();
+              // pop the page
               Navigator.of(context).pop();
               ScaffoldMessenger.of(
                 context,

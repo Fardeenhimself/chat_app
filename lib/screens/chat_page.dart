@@ -46,6 +46,40 @@ class _ChatPageState extends State<ChatPage> {
     scrollDown();
   }
 
+  // block user
+  void _blockUser(BuildContext context, String userID) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Block User'),
+        content: const Text('Are you sure you want to block this user?'),
+        actions: [
+          // cancel
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Cancel'),
+          ),
+
+          // report
+          TextButton(
+            onPressed: () {
+              // perform the function
+              _chatService.blockUser(userID);
+              // pop the dialog
+              Navigator.of(context).pop();
+              // pop the page
+              Navigator.of(context).pop();
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('User Blocked!')));
+            },
+            child: const Text('Block'),
+          ),
+        ],
+      ),
+    );
+  }
+
   // Focus Node
   final FocusNode _myFocusNode = FocusNode();
 
@@ -86,7 +120,17 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.recieverEmail)),
+      appBar: AppBar(
+        title: Text(widget.recieverEmail),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _blockUser(context, widget.recieverID);
+            },
+            icon: Icon(Icons.person_off),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           // Message list
