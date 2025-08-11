@@ -1,5 +1,6 @@
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/chat/chat_service.dart';
+import 'package:chat_app/components/chat_bubble.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -134,28 +135,11 @@ class _ChatPageState extends State<ChatPage> {
 
     return Padding(
       padding: const EdgeInsets.only(top: 12),
-      child: Row(
-        mainAxisAlignment: isCurrentUser
-            ? MainAxisAlignment.end
-            : MainAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            decoration: BoxDecoration(
-              color: isCurrentUser
-                  ? Colors.greenAccent.shade100
-                  : Colors.grey[300],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Text(
-              data['message'],
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge!.copyWith(color: Colors.black),
-            ),
-          ),
-        ],
+      child: ChatBubble(
+        isCurrentUser: isCurrentUser,
+        message: data['message'],
+        messageID: doc.id,
+        userID: doc['senderID'],
       ),
     );
   }
