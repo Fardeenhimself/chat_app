@@ -23,7 +23,12 @@ class UserTile extends StatelessWidget {
             Icon(Icons.person, size: 25),
             const SizedBox(width: 12),
             // User Name (User email for now)
-            Text(userName, style: Theme.of(context).textTheme.bodyLarge),
+            Text(
+              userName,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
+            ),
           ],
         ),
       ),

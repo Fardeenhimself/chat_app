@@ -15,17 +15,26 @@ class SettingsPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete Account'),
-        content: const Text(
+        title: Text(
+          'Delete Account',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        content: Text(
           'Are you sure you want to delete your account? This action cannot be undone.',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(), // Close dialog
-            child: const Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
             onPressed: () async {
               Navigator.of(ctx).pop(); // Close dialog first
 
@@ -51,7 +60,10 @@ class SettingsPage extends StatelessWidget {
                 ).showSnackBar(SnackBar(content: Text(e.toString())));
               }
             },
-            child: const Text('Delete'),
+            child: Text(
+              'Delete',
+              style: TextStyle(color: Theme.of(context).colorScheme.onError),
+            ),
           ),
         ],
       ),

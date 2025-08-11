@@ -212,7 +212,10 @@ class _ChatPageState extends State<ChatPage> {
             ),
             child: IconButton(
               onPressed: sendMessage,
-              icon: Icon(Icons.arrow_upward, color: Colors.black),
+              icon: Icon(
+                Icons.arrow_upward,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
             ),
           ),
         ],

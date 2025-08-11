@@ -21,6 +21,8 @@ class MyTextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
       child: TextField(
+        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        cursorColor: Theme.of(context).colorScheme.onPrimary,
         textCapitalization: TextCapitalization.sentences,
         focusNode: focusNode,
         controller: controller,
@@ -28,7 +30,7 @@ class MyTextfield extends StatelessWidget {
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           focusedBorder: OutlineInputBorder(
@@ -39,9 +41,9 @@ class MyTextfield extends StatelessWidget {
           fillColor: Theme.of(context).colorScheme.secondary,
           filled: true,
           hintText: hintText,
-          hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           prefixIcon: prefixIcon,
-          prefixIconColor: Theme.of(context).colorScheme.primary,
+          prefixIconColor: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
     );
