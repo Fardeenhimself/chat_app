@@ -4,14 +4,14 @@ class Message {
   final String senderID;
   final String senderEmail;
   final String recieverID;
-  final String message;
+  final String messages;
   final Timestamp timestamp;
 
   Message({
     required this.senderID,
     required this.senderEmail,
     required this.recieverID,
-    required this.message,
+    required this.messages,
     required this.timestamp,
   });
 
@@ -21,7 +21,7 @@ class Message {
       'senderID': senderID,
       'senderEmail': senderEmail,
       'recieverID': recieverID,
-      'message': message,
+      'message': messages,
       'timestamp': timestamp,
     };
   }

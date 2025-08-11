@@ -20,15 +20,13 @@ class UserTile extends StatelessWidget {
         child: Row(
           children: [
             // User Icon (Image to be implemented lated)
-            Icon(Icons.person),
+            Icon(Icons.person, size: 25),
             const SizedBox(width: 12),
             // User Name (User email for now)
-            Text(userName),
+            Text(userName, style: Theme.of(context).textTheme.bodyLarge),
           ],
         ),
       ),
     );
   }
 }
-
-

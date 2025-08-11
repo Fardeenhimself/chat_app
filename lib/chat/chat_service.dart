@@ -32,7 +32,7 @@ class ChatService {
       senderID: currentUserID,
       senderEmail: currentUserEmail,
       recieverID: recieverID,
-      message: message,
+      messages: message,
       timestamp: timestamp,
     );
 
@@ -66,7 +66,7 @@ class ChatService {
         .collection('chat_rooms')
         .doc(chatRoomID)
         .collection('messages')
-        .orderBy('timestamp', descending: false)
+        .orderBy('timestamp', descending: true)
         .snapshots();
   }
 }

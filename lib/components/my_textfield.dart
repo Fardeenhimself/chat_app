@@ -6,7 +6,7 @@ class MyTextfield extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     required this.prefixIcon,
-    required this.controller
+    required this.controller,
   });
 
   final String hintText;
@@ -19,7 +19,9 @@ class MyTextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 8),
       child: TextField(
-        controller: controller ,
+        textCapitalization: TextCapitalization.sentences,
+        
+        controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
