@@ -20,10 +20,10 @@ class MyButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-              fontSize: 16,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              color: Colors.white,
               fontWeight: FontWeight.bold,
+              letterSpacing: 1,
             ),
           ),
         ),
