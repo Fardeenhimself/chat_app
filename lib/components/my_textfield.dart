@@ -29,11 +29,13 @@ class MyTextfield extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
           focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -41,7 +43,6 @@ class MyTextfield extends StatelessWidget {
           fillColor: Theme.of(context).colorScheme.secondary,
           filled: true,
           hintText: hintText,
-          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
           prefixIcon: prefixIcon,
           prefixIconColor: Theme.of(context).colorScheme.onPrimary,
         ),
