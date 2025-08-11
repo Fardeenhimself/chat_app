@@ -11,6 +11,9 @@ class AuthService {
     return _auth.currentUser;
   }
 
+  // Get all user except blocked
+
+
   //sign in method
   Future<UserCredential> signInWithEmailAndPassword(
     String email,
@@ -61,4 +64,6 @@ class AuthService {
   Future<void> signOut() async {
     return await _auth.signOut();
   }
+
+
 }
