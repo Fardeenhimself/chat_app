@@ -89,7 +89,10 @@ class SettingsPage extends StatelessWidget {
               children: [
                 Text(
                   'DARK MODE',
-                  style: TextStyle(letterSpacing: 1.5, fontSize: 15),
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    letterSpacing: 1.5,
+                  ),
                 ),
                 CupertinoSwitch(
                   value: Provider.of<ThemeProvider>(
