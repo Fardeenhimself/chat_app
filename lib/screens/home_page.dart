@@ -1,4 +1,5 @@
 import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/auth/status_handler.dart';
 import 'package:chat_app/chat/chat_service.dart';
 import 'package:chat_app/components/my_drawer.dart';
 import 'package:chat_app/components/user_tile.dart';
@@ -6,11 +7,29 @@ import 'package:chat_app/screens/chat_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final AuthService _authService = AuthService();
   final ChatService _chatService = ChatService();
+  final StatusHandler _statusHandler = StatusHandler();
+
+  @override
+  void initState() {
+    super.initState();
+    _statusHandler.init(); // starts tracking
+  }
+
+  @override
+  void dispose() {
+    _statusHandler.disposeHandler(); //stops the track
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

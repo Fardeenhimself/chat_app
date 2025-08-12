@@ -121,7 +121,59 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.recieverEmail),
+        title: StreamBuilder<DocumentSnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('Users')
+              .doc(widget.recieverID)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData || snapshot.data?.data() == null) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.recieverEmail,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    "Offline",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ],
+              );
+            }
+
+            var userData = snapshot.data!.data() as Map<String, dynamic>;
+            String statusText;
+
+            if (userData['status'] == 'online') {
+              statusText = "Online";
+            } else if (userData['lastActive'] != null) {
+              DateTime lastSeen = (userData['lastActive'] as Timestamp)
+                  .toDate();
+              statusText = "Last seen: ${_formatLastSeen(lastSeen)}";
+            } else {
+              statusText = "Offline";
+            }
+
+            return Column(
+              children: [
+                Text(
+                  widget.recieverEmail,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                Text(
+                  statusText,
+                  style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -221,5 +273,15 @@ class _ChatPageState extends State<ChatPage> {
         ],
       ),
     );
+  }
+
+  // L A S T  S E E N  F O R M A T T E R
+  String _formatLastSeen(DateTime dateTime) {
+    Duration diff = DateTime.now().difference(dateTime);
+
+    if (diff.inMinutes < 1) return "just now";
+    if (diff.inMinutes < 60) return "${diff.inMinutes} min ago";
+    if (diff.inHours < 24) return "${diff.inHours} hr ago";
+    return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
   }
 }

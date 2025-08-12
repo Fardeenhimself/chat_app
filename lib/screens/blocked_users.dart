@@ -47,7 +47,7 @@ class BlockedUsers extends StatelessWidget {
     String userID = authService.getCurrentUser()!.uid;
 
     return Scaffold(
-      appBar: AppBar(title: Text('BLOCKED USERS'), actions: []),
+      appBar: AppBar(title: Text('B L O C K E D  U S E R S')),
       body: StreamBuilder<List<Map<String, dynamic>>>(
         stream: chatService.getBlockedUsers(userID),
         builder: (context, snapshot) {
@@ -63,7 +63,14 @@ class BlockedUsers extends StatelessWidget {
           // no user
           final blockerUsers = snapshot.data ?? [];
           if (blockerUsers.isEmpty) {
-            return const Center(child: Text('No blocked users :)'));
+            return Center(
+              child: Text(
+                'No blocked users 🙌',
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            );
           }
 
           // blocked users

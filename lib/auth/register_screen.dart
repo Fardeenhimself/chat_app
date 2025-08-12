@@ -1,4 +1,5 @@
 import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/components/my_authtextfield.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -64,14 +65,14 @@ class RegisterScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             // Email
-            MyTextfield(
+            MyAuthtextfield(
               hintText: 'Email',
               obscureText: false,
               prefixIcon: Icon(Icons.email),
               controller: _emailController,
             ),
             // Password
-            MyTextfield(
+            MyAuthtextfield(
               hintText: 'Password',
               obscureText: true,
               prefixIcon: Icon(Icons.password_rounded),
@@ -79,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
             ),
 
             // Confirm Password
-            MyTextfield(
+            MyAuthtextfield(
               hintText: 'Confirm Password',
               obscureText: true,
               prefixIcon: Icon(Icons.password_rounded),

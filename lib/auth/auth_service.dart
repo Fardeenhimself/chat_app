@@ -11,8 +11,6 @@ class AuthService {
     return _auth.currentUser;
   }
 
-  // Get all user except blocked
-
   //sign in method
   Future<UserCredential> signInWithEmailAndPassword(
     String email,
@@ -25,11 +23,12 @@ class AuthService {
         password: password,
       );
 
-      // save user info if doesn't exist
+      // save user info if doesn't exist with active status
       _firestore.collection('Users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
         'email': email,
-      });
+        'lastActive': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
 
       return userCredential;
     } on FirebaseAuthException catch (e) {
@@ -51,6 +50,7 @@ class AuthService {
       _firestore.collection('Users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
         'email': email,
+        'lastActive': FieldValue.serverTimestamp(),
       });
 
       return userCredential;
@@ -61,6 +61,13 @@ class AuthService {
 
   // sign out method
   Future<void> signOut() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      await _firestore.collection('Users').doc(user.uid).update({
+        'status': 'offline',
+        'lastActive': FieldValue.serverTimestamp(),
+      });
+    }
     return await _auth.signOut();
   }
 
