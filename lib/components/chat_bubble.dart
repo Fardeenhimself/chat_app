@@ -137,20 +137,26 @@ class ChatBubble extends StatelessWidget {
             ? MainAxisAlignment.end
             : MainAxisAlignment.start,
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            decoration: BoxDecoration(
-              color: isCurrentUser
-                  ? Colors.greenAccent.shade100
-                  : Colors.grey[300],
-              borderRadius: BorderRadius.circular(12),
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.7,
             ),
-            child: Text(
-              message,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge!.copyWith(color: Colors.black),
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              decoration: BoxDecoration(
+                color: isCurrentUser
+                    ? Colors.greenAccent.shade100
+                    : Colors.grey[300],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                softWrap: true,
+                message,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge!.copyWith(color: Colors.black),
+              ),
             ),
           ),
         ],
