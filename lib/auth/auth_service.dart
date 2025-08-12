@@ -38,6 +38,7 @@ class AuthService {
 
   // register method
   Future<UserCredential> signUpWithEmailAndPassword(
+    String username,
     String email,
     String password,
   ) async {
@@ -45,10 +46,10 @@ class AuthService {
       // save user
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-
       // save user info if doesn't exist
       _firestore.collection('Users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
+        'username': username,
         'email': email,
         'lastActive': FieldValue.serverTimestamp(),
       });

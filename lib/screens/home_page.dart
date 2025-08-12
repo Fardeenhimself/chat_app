@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (ctx) => ChatPage(
+                recieverUsername: userData['username'],
                 recieverEmail: userData['email'],
                 recieverID: userData['uid'],
               ),

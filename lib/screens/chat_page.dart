@@ -11,8 +11,10 @@ class ChatPage extends StatefulWidget {
     super.key,
     required this.recieverEmail,
     required this.recieverID,
+    required this.recieverUsername,
   });
 
+  final String recieverUsername;
   final String recieverEmail;
   final String recieverID;
 
@@ -159,7 +161,7 @@ class _ChatPageState extends State<ChatPage> {
             return Column(
               children: [
                 Text(
-                  widget.recieverEmail,
+                  widget.recieverUsername,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),

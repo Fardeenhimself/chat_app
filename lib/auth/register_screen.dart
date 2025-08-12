@@ -10,19 +10,55 @@ class RegisterScreen extends StatelessWidget {
   final void Function()? onTap;
 
   // Controllers for text and password
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPWController = TextEditingController();
+
+  // Helper method to validate email domain
+  bool isValidEmailDomain(String email) {
+    final allowedDomains = [
+      'gmail.com',
+      'outlook.com',
+      'yahoo.com',
+      'icloud.com',
+      'hotmail.com',
+      'live.com',
+      'aol.com',
+      // Add more valid domains if needed
+    ];
+
+    try {
+      final domain = email.split('@').last.toLowerCase();
+      return allowedDomains.contains(domain);
+    } catch (e) {
+      return false;
+    }
+  }
 
   // Registration function
   void register(BuildContext context) async {
     // call the class
     final authService = AuthService();
 
+    // Check if email domain is valid
+    if (!isValidEmailDomain(_emailController.text)) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Please use a valid email address.Must contain "@" and valid domain',
+          ),
+        ),
+      );
+      return;
+    }
+
     // pw and cpw must match to create an account
     if (_confirmPWController.text == _passwordController.text) {
       try {
         await authService.signUpWithEmailAndPassword(
+          _usernameController.text,
           _emailController.text,
           _passwordController.text,
         );
@@ -64,6 +100,13 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+            // Username
+            MyAuthtextfield(
+              hintText: 'User Name',
+              obscureText: false,
+              prefixIcon: Icon(Icons.person),
+              controller: _usernameController,
+            ),
             // Email
             MyAuthtextfield(
               hintText: 'Email',
