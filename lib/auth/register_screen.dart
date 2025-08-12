@@ -1,7 +1,6 @@
 import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_authtextfield.dart';
 import 'package:chat_app/components/my_button.dart';
-import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
