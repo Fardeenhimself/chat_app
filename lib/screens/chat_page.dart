@@ -53,13 +53,22 @@ class _ChatPageState extends State<ChatPage> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Block User'),
-        content: const Text('Are you sure you want to block this user?'),
+        title: Text(
+          'Block User',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        content: Text(
+          'Are you sure you want to block this user?',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
         actions: [
           // cancel
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
 
           // report
@@ -73,9 +82,12 @@ class _ChatPageState extends State<ChatPage> {
               Navigator.of(context).pop();
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(const SnackBar(content: Text('User Blocked!')));
+              ).showSnackBar(SnackBar(content: Text('User Blocked!')));
             },
-            child: const Text('Block'),
+            child: Text(
+              'Block',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
         ],
       ),

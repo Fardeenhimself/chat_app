@@ -25,9 +25,14 @@ class ChatBubble extends StatelessWidget {
           child: Wrap(
             children: [
               // Report user button
-              CupertinoListTile(
+              ListTile(
                 leading: const Icon(Icons.flag),
-                title: const Text('Report'),
+                title: Text(
+                  'Report',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   _reportMessage(context, messageID, userID);
@@ -35,9 +40,14 @@ class ChatBubble extends StatelessWidget {
               ),
 
               // Block user button
-              CupertinoListTile(
+              ListTile(
                 leading: const Icon(Icons.block),
-                title: const Text('Block User'),
+                title: Text(
+                  'Block User',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   _blockUser(context, userID);
@@ -45,9 +55,14 @@ class ChatBubble extends StatelessWidget {
               ),
 
               // cancel
-              CupertinoListTile(
+              ListTile(
                 leading: const Icon(Icons.cancel),
-                title: const Text('Cancel'),
+                title: Text(
+                  'Cancel',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
                 onTap: () => Navigator.of(context).pop(),
               ),
             ],
@@ -62,13 +77,22 @@ class ChatBubble extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Report Message'),
-        content: const Text('Are you sure you want to report this message?'),
+        title: Text(
+          'Report Message',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        content: Text(
+          'Are you sure you want to report this message?',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
         actions: [
           // cancel
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
 
           // report
@@ -80,7 +104,10 @@ class ChatBubble extends StatelessWidget {
                 context,
               ).showSnackBar(const SnackBar(content: Text('Message Reported')));
             },
-            child: const Text('Report'),
+            child: Text(
+              'Report',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
         ],
       ),
@@ -92,13 +119,22 @@ class ChatBubble extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Block User'),
-        content: const Text('Are you sure you want to block this user?'),
+        title: Text(
+          'Block User',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        content: Text(
+          'Are you sure you want to block this user?',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
         actions: [
           // cancel
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
 
           // report
@@ -114,7 +150,10 @@ class ChatBubble extends StatelessWidget {
                 context,
               ).showSnackBar(const SnackBar(content: Text('User Blocked!')));
             },
-            child: const Text('Block'),
+            child: Text(
+              'Block',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
         ],
       ),
