@@ -28,21 +28,5 @@ class StatusHandler with WidgetsBindingObserver {
     }
   }
 
-  void _setOnline() {
-    final user = _auth.currentUser;
-    if (user == null) return;
-    _firestore.collection('Users').doc(user.uid).update({
-      'status': 'online',
-      'lastActive': FieldValue.serverTimestamp(),
-    });
-  }
 
-  void _setOffline() {
-    final user = _auth.currentUser;
-    if (user == null) return;
-    _firestore.collection('Users').doc(user.uid).update({
-      'status': 'offline',
-      'lastActive': FieldValue.serverTimestamp(),
-    });
-  }
 }
