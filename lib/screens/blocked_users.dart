@@ -16,17 +16,30 @@ class BlockedUsers extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Unblock User'),
-        content: const Text('Are you sure you want to unblock this user?'),
+        title: Text(
+          'Unblock User',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
+        content: Text(
+          'Are you sure you want to unblock this user?',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
         actions: [
           // cancel
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
 
           // Unblock
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.onSecondary,
+            ),
             onPressed: () {
               chatService.unblockUser(userId);
               Navigator.of(context).pop();
@@ -35,7 +48,10 @@ class BlockedUsers extends StatelessWidget {
                 context,
               ).showSnackBar(SnackBar(content: const Text('User unblocked!')));
             },
-            child: const Text('Unblock'),
+            child: Text(
+              'Unblock',
+              style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+            ),
           ),
         ],
       ),

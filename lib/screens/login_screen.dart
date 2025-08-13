@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
             Icon(
               Icons.chat_rounded,
               size: 40,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.onPrimary,
             ),
             const SizedBox(height: 12),
             // Some Text
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
             const SizedBox(height: 20),
@@ -80,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'Don\'t have an account?',
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 ),
                 const SizedBox(width: 3),
@@ -89,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                   child: Text(
                     'Register Now',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
                     ),

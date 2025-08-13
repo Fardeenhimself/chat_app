@@ -96,7 +96,11 @@ class ChatBubble extends StatelessWidget {
           ),
 
           // report
-          TextButton(
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.onSecondary,
+            ),
             onPressed: () {
               ChatService().reportUser(messageID, userID);
               Navigator.of(context).pop();
@@ -138,7 +142,11 @@ class ChatBubble extends StatelessWidget {
           ),
 
           // report
-          TextButton(
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.onSecondary,
+            ),
             onPressed: () {
               // perform the function
               ChatService().blockUser(userID);

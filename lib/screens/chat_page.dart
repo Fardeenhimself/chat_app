@@ -72,7 +72,11 @@ class _ChatPageState extends State<ChatPage> {
           ),
 
           // report
-          TextButton(
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.onSecondary,
+            ),
             onPressed: () {
               // perform the function
               _chatService.blockUser(userID);

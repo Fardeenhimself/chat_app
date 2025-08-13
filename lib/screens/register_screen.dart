@@ -24,7 +24,6 @@ class RegisterScreen extends StatelessWidget {
       'hotmail.com',
       'live.com',
       'aol.com',
-      // Add more valid domains if needed
     ];
 
     try {

@@ -1,6 +1,6 @@
 import 'package:chat_app/auth/auth_gate.dart';
 import 'package:chat_app/auth/auth_service.dart';
-import 'package:chat_app/theme/theme_provider.dart';
+import 'package:chat_app/providers/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
